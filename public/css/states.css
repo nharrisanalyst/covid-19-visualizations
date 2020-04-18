@@ -1,0 +1,46 @@
+.title-and-line-chart{
+  width:calc(100vw - 40px);
+  height:calc(100vh - 20px);
+  display:flex;
+  padding-left:10px;
+  padding-right:10px;
+  flex-direction: column;
+}
+
+.chart-title-cont{
+  flex:2;
+  text-align:center;
+  font-size:34px;
+
+  font-weight:bold;
+}
+
+.chart-title{
+  height:calc(100% - 20px);
+  width:100%;
+  margin-top:20px;
+}
+.state-chart-cont{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex:10;
+  margin-bottom:50px;
+}
+.states-chart-main{
+  flex:9;
+  height:100%;
+  width:100%;
+
+}
+
+.states-picker{
+  flex:3;
+  height:100%;
+  width:100%;
+  background-color:black;
+}
+
+.state-chart-popup{
+  color:black;
+}
