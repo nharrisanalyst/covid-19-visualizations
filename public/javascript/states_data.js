@@ -25,6 +25,8 @@
             }
           })
 
+          logData = logData.filter(d => d[0]!= undefined);
+
        console.log(logData);
        const stateChart =   new StateChart({
              el: d3.select('.states-chart-main').node(),
@@ -33,6 +35,9 @@
         });
 
       stateChart.render();
+       let statesData = logData.map(d=>({state:d[0].state, on:highlightedStates.includes(d[0].state)}))
+           statesData = statesData.sort((a,b)=>(a.state<b.state?-1:1));
+       store.dispatch(setStates(statesData))
   })
 
   function filter(data ,func){
