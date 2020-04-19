@@ -64,9 +64,10 @@ let StateChart;
         const line = d3.line()
                       .x(d=> this.xScale(d.day))
                       .y(d => this.yScale(d.positive));
-
+        this.mainG.selectAll('.state-groups').remove();
         this.mainG.selectAll('.state-groups').data(this.data)
                    .join('g')
+                   .attr('class','state-groups')
                    .attr('fill', d=> d[0]===undefined?'none': self.highlightedStates.includes(d[0].state)?'rgb(58, 68, 207)':'rgb(181,232,255)')
                    .each(function(d,i){
                       d3.select(this).append('path').datum(d)
@@ -81,7 +82,7 @@ let StateChart;
                                    .attr('class',d=>`state-circle state-circle-${d.state}`)
                                    .attr('cx',d => self.xScale(d.day))
                                    .attr('cy', d => self.yScale(d.positive))
-                                   .attr('r', 2.5)
+                                   .attr('r', 2.5);
                    })
 
 
@@ -158,6 +159,18 @@ let StateChart;
                   <div class='state-popup-state'>State: ${state}</div>
                   <div class='value-popup-state'>${title}: ${value}</div>
                 </div>`)
+      }
+
+      changeHighlightedState(highlightedStates){
+        this.highlightedStates = highlightedStates;
+        this.data = this.data.sort(d=>{
+          if(highlightedStates.includes( d[0]!= undefined && d[0].state)){
+            return 1
+          }else{
+            return -1;
+          }
+        })
+        this.makeLines();
       }
 
       render(){

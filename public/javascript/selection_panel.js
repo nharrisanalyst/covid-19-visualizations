@@ -1,3 +1,5 @@
+///stateChart imported from './state_data.js';
+
 {
  store.subscribe(()=>{
    if(store.getState().states === null) return;
@@ -13,7 +15,15 @@
     store.dispatch(onOffState(state));
   })
   console.log(store.getState());
+  highlightStates(store.getState().states);
  })
+
+ function highlightStates(states){
+   console.log('mail voting', states);
+    const selectedStates = [];
+    states.forEach(st=>{if(st.on){selectedStates.push(st.state)}});
+   stateChart.changeHighlightedState(selectedStates)
+ }
 
 
 }

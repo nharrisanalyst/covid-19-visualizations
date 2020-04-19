@@ -1,5 +1,5 @@
 // StateChart import from "./state_chart";
-
+let stateChart;
 
 {
 
@@ -13,7 +13,7 @@
         oneState.state =  state
         stateData.push(oneState);
       }
-      const highlightedStates =['NY', 'CA', 'NJ', 'FL', 'LA', 'MI', 'IL','MA','SD'];
+      const highlightedStates =['NY', 'CA', 'NJ', 'FL', 'LA', 'MI','MA',];
       let logData = filter(stateData, d=>(d.positive >=10));
           logData = day(logData)
 
@@ -28,7 +28,7 @@
           logData = logData.filter(d => d[0]!= undefined);
 
        console.log(logData);
-       const stateChart =   new StateChart({
+        stateChart =   new StateChart({
              el: d3.select('.states-chart-main').node(),
              data:logData,
              highlightedStates:highlightedStates,
