@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "webpack && node ./dist/index",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "heroku-postbuild": "nom start" 
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",
