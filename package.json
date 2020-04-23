@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "webpack && node ./dist/index",
-    "watch": "nodemon",
+    "watch": "nodemon"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",
