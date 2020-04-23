@@ -32,6 +32,7 @@ let stateChart;
              el: d3.select('.states-chart-main').node(),
              data:logData,
              highlightedStates:highlightedStates,
+             doubleData:doubleData,
         });
 
       stateChart.render();
