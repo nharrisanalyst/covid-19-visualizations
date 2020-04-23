@@ -1,21 +1,39 @@
 let store
 
-{
-  const stateAbbreviations = [
-'AL','AK','AS','AZ','AR','CA','CO','CT','DE','DC','FM','FL','GA',
-'GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MH','MD','MA',
-'MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND',
-'MP','OH','OK','OR','PW','PA','PR','RI','SC','SD','TN','TX','UT',
-'VT','VI','VA','WA','WV','WI','WY'
-]
+//actions
+const setStates = (data)=>({
+  type:'SET_STATES',
+  payload:{
+    data
+  }
+})
 
-    const initState =  stateAbbreviations.map(state=>({
-        name:state, on:true
-    }))
+const onOffState=(state)=>({
+  type:'ON_OFF_STATE',
+  payload:{
+    state,
+  }
+})
+
+
+{
+
+
+    const initState =  {
+        states:null
+    }
 
     const stateReducer = (state = initState, action= null) =>{
           switch(action.type){
-            default:
+            case 'ON_OFF_STATE':
+              return {...state, states:state.states.map(st=>{
+                  if(action.payload.state === st.state){
+                    st.on = !st.on;
+                  }
+                  return st;
+              })};
+            case 'SET_STATES':
+              return {...state, states:action.payload.data};
                return state;
           }
     };

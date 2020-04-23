@@ -1,15 +1,14 @@
 let StateChart;
 {
   class BaseXYChart{
-    height;
-    width;
-    margin = {l:40,t:20,r:20,b:20};
     constructor(options){
+      this.margin = {l:40,t:20,r:20,b:20};
       this.el = options.el;
       this.data = options.data;
       this.highlightedStates = options.highlightedStates;
       this.height = this.el.getBoundingClientRect().height - (this.margin.t+this.margin.b);
       this.width = this.el.getBoundingClientRect().width - (this.margin.l+this.margin.r);
+      this.doubleData=options.doubleData;
     }
 
     makeSVG(){
@@ -27,6 +26,7 @@ let StateChart;
       this.dayMax = dayMax;
       this.xScale= d3.scaleLinear().domain([0,dayMax]).range([0,this.width]);
       const maxY = 300000
+             this.maxY = maxY;
       this.yScale = d3.scaleLog().domain([10,maxY]).range([this.height,0]);
 
       }
@@ -64,9 +64,10 @@ let StateChart;
         const line = d3.line()
                       .x(d=> this.xScale(d.day))
                       .y(d => this.yScale(d.positive));
-
+        this.mainG.selectAll('.state-groups').remove();
         this.mainG.selectAll('.state-groups').data(this.data)
                    .join('g')
+                   .attr('class','state-groups')
                    .attr('fill', d=> d[0]===undefined?'none': self.highlightedStates.includes(d[0].state)?'rgb(58, 68, 207)':'rgb(181,232,255)')
                    .each(function(d,i){
                       d3.select(this).append('path').datum(d)
@@ -81,7 +82,7 @@ let StateChart;
                                    .attr('class',d=>`state-circle state-circle-${d.state}`)
                                    .attr('cx',d => self.xScale(d.day))
                                    .attr('cy', d => self.yScale(d.positive))
-                                   .attr('r', 2.5)
+                                   .attr('r', 2.5);
                    })
 
 
@@ -123,9 +124,9 @@ let StateChart;
 
       renderOverlay(data, x,y){
         d3.selectAll('.state-circle').attr('fill','none');
-        d3.selectAll('.state-path').attr('stroke', 'darkgrey')
-                                   .attr('stroke-width', 0.7)
-                                   .attr('stroke-opacity', 0.7);
+        d3.selectAll('.state-path').attr('stroke', 'rgb(181,232,255)')
+                                   .attr('stroke-width', 1)
+                                   .attr('stroke-opacity', 0.75);
 
         d3.selectAll(`.state-circle-${data.state}`).attr('fill','rgb(58, 68, 207)');
         d3.selectAll(`.state-path-${data.state}`).attr('stroke','rgb(58, 68, 207)')
@@ -160,10 +161,46 @@ let StateChart;
                 </div>`)
       }
 
+      changeHighlightedState(highlightedStates){
+        this.highlightedStates = highlightedStates;
+        this.data = this.data.sort(d=>{
+          if(highlightedStates.includes( d[0]!= undefined && d[0].state)){
+            return 1
+          }else{
+            return -1;
+          }
+        })
+        this.makeLines();
+      }
+      makeDoubleLines(){
+        const line = d3.line()
+                       .x(d=>this.xScale(d.day))
+                       .y(d=>this.yScale(d.value));
+
+       this.mainG.selectAll('.double-lines').data(this.doubleData)
+                                             .join('path')
+                                             .attr('class', 'double-lines')
+                                             .attr('stroke', 'rgba(100,100,100, 0.5)')
+                                             .attr('stroke-width', 1)
+                                             .attr('fill', 'none')
+                                             .attr("stroke-dasharray", '10,5')
+                                             .attr('d', line);
+
+        this.mainG.selectAll('.double-line-text')
+                                .data(this.data)
+                                .join('text')
+                                .attr('x',(d,i)=> i === 0?this.xScale(doubleDay(this.maxY, i+1) -7):this.xScale(doubleDay(this.maxY, i+1) -9))
+                                .attr('y', this.yScale(this.maxY)+ 18)
+                                .attr('fill', 'rgba(100,100,100, 0.25)')
+                                .text((d,i)=> i===0? `Doubles Every Day`:`Doubles Every ${i+1} Days`)
+
+      }
+
       render(){
         this.makeSVG();
         this.makeScales();
         this.makeAxis();
+        this.makeDoubleLines();
         this.makeLines();
         this.makeOverlay();
         //this.makeDots();

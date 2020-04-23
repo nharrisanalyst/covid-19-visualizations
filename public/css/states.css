@@ -1,3 +1,7 @@
+body{
+  background-color: rgb(245,245,245);
+}
+
 .title-and-line-chart{
   width:calc(100vw - 40px);
   height:calc(100vh - 20px);
@@ -16,9 +20,13 @@
 }
 
 .chart-title{
-  height:calc(100% - 20px);
+
   width:100%;
   margin-top:20px;
+}
+.chart-sub-title{
+  font-size: 16px;
+  font-weight:400;
 }
 .state-chart-cont{
   width:100%;
@@ -36,9 +44,29 @@
 
 .states-picker{
   flex:3;
-  height:100%;
+  height:160px;
   width:100%;
-  background-color:black;
+  display:flex;
+  flex-wrap: wrap;
+}
+.state-select{
+  text-align: center;
+  font-weight:100;
+  padding:5px;
+  margin:5px;
+  border:1px solid black;
+  width:25px;
+  height:25px;
+  line-height: 25px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+.state-select:hover{
+ border:1px solid blue;
+}
+.state-select-on{
+  color:white;
+  background-color: gray;
 }
 
 .state-chart-popup{
