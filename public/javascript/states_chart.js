@@ -102,17 +102,35 @@ let StateChart;
 
              console.log(delaunay.find(1,1))
                    this.svg.on('mousemove', el=>{
-
-
+                    d3.selectAll('.popup-circle').remove();
+                   d3.selectAll('.circle-overlay').remove();
                     const [mx,my] = d3.mouse(this.el);
                     const index = delaunay.find(mx, my);
                   this.renderOverlay(dataFlat[index], mx,my);
 
+                  console.log([dataFlat[index]]);
 
+               const xoffset = my >200?35:-220
+              const popUp = this.mainG.selectAll('.popup-circle').data([dataFlat[index]])
+                                                                 .join('g')
+                                                                 .attr('class', 'popup-circle')
+                                                                 .attr('fill', 'rgb(50,50,50)')
+                                                                 .attr('transform', d=>`translate(${(this.xScale(d.day)+xoffset)}, ${this.yScale(d.positive)-20})`)
+
+                                                                 popUp.append('text')
+                                                                      .text(d => `State: ${d.state}`)
+                                                                 popUp.append('text')
+                                                                      .attr('y', '20')
+                                                                     .text(d =>`Confirmed Positive ${d3.format(",")(d.positive)}`)
+              const stateData = d3.select(`.state-path-${[dataFlat[index]].state}`).data()[0];
+              if(index === stateData.length-1){
+                d3.selectAll('.popup-circle').remove();
+              }
             })
 
             this.svg.on('mouseleave', el=>{
               d3.selectAll('.tool-tip-text').remove();
+              d3.selectAll('.circle-overlay').remove();
                             d3.selectAll('.state-path')
                                             .attr('stroke',  d=> d[0]===undefined?'none': this.highlightedStates.includes(d[0].state)?'rgb(58, 68, 207)':'rgb(181,232,255)')
                                             .attr('stroke-width', 2 );
@@ -123,6 +141,7 @@ let StateChart;
       }
 
       renderOverlay(data, x,y){
+
         d3.selectAll('.state-circle').attr('fill','none');
         d3.selectAll('.state-path').attr('stroke', 'rgb(181,232,255)')
                                    .attr('stroke-width', 1)
@@ -132,6 +151,13 @@ let StateChart;
         d3.selectAll(`.state-path-${data.state}`).attr('stroke','rgb(58, 68, 207)')
                                                  .attr('stroke-width', 2 )
                                                  .attr('stroke-opacity',1);
+
+       this.mainG.append('circle').datum(data)
+                                  .attr('class',"circle-overlay")
+                                  .attr('cx',d => this.xScale(d.day))
+                                  .attr('cy', d => this.yScale(d.positive))
+                                  .attr('r', 5)
+                                  .attr('fill','rgb(143, 210, 255)');
 
          const stateData = d3.select(`.state-path-${data.state}`).data()[0];
          const popUpData = stateData[stateData.length-1];
@@ -154,7 +180,6 @@ let StateChart;
       }
 
       renderPopUp(state, value, currentNew, title){
-        console.log('here');
         return(`<div  class='state-chart-popup'>
                   <div class='state-popup-state'>State: ${state}</div>
                   <div class='value-popup-state'>${title}: ${value}</div>
