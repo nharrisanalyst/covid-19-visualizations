@@ -122,14 +122,13 @@ let StateChart;
                                                                  popUp.append('text')
                                                                       .attr('y', '20')
                                                                      .text(d =>`Confirmed Positive ${d3.format(",")(d.positive)}`)
-              const stateData = d3.select(`.state-path-${[dataFlat[index]].state}`).data()[0];
-              if(index === stateData.length-1){
-                d3.selectAll('.popup-circle').remove();
-              }
+            
             })
 
             this.svg.on('mouseleave', el=>{
               d3.selectAll('.tool-tip-text').remove();
+              d3.selectAll('.popup-circle').remove();
+             d3.selectAll('.circle-overlay').remove();
               d3.selectAll('.circle-overlay').remove();
                             d3.selectAll('.state-path')
                                             .attr('stroke',  d=> d[0]===undefined?'none': this.highlightedStates.includes(d[0].state)?'rgb(58, 68, 207)':'rgb(181,232,255)')
