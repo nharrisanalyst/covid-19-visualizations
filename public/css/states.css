@@ -20,7 +20,7 @@ body{
   text-align:center;
   font-size:34px;
 
-  font-weight:300;
+  font-weight:200;
 }
 
 .chart-title{
@@ -30,7 +30,7 @@ body{
 }
 .chart-sub-title{
   font-size: 20px;
-  font-weight:200;
+  font-weight:150;
 }
 .state-chart-cont{
   width:100%;
