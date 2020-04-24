@@ -117,7 +117,7 @@ body{
 }
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) and (max-width: 670px) {
   .states-picker{
 
     height:50px;
