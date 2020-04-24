@@ -10,6 +10,9 @@ body{
   padding-left:10px;
   padding-right:10px;
   flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(150,150,150);
 }
 
 .chart-title-cont{
@@ -35,6 +38,7 @@ body{
   display:flex;
   flex:10;
   margin-bottom:50px;
+
 }
 .states-chart-main{
   flex:9;
@@ -77,47 +81,4 @@ body{
 .chart-sub-author{
   font-size: 16px;
   font-weight:400;
-}
-
-
-@media only screen and (max-width: 670px) {
-  body {
-
-    margin:0;
-
-  }
-  .double-text{
-    display:none;
-  }
-  .title-and-line-chart{
-    width:calc(100vw);
-    height:calc(100vh);
-    display:block;
-    padding:0;
-
-  }
-  .state-chart-cont{
-    display:block;
-    height:65%;
-  }
-
-  .state-select {
-
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    font-size:10px;
-    padding:3px;
-    margin:3px;
-    padding-right:5px;
-
-}
-}
-
-@media only screen and (orientation: landscape) {
-  .states-picker{
-
-    height:50px;
-
-  }
 }
