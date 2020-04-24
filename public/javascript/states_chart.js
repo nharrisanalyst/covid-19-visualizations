@@ -75,14 +75,14 @@ let StateChart;
                                       .attr('d', line)
                                       .attr('fill', 'none')
                                       .attr('stroke',  d=> d[0]===undefined?'none': self.highlightedStates.includes(d[0].state)?'rgb(58, 68, 207)':'rgb(181,232,255)')
-                                      .attr('stroke-width', 2 );
+                                      .attr('stroke-width', d => window.innerWidth<670?1:1.5 );
 
                     d3.select(this).selectAll('.state-circles').data(d)
                                    .join('circle')
                                    .attr('class',d=>`state-circle state-circle-${d.state}`)
                                    .attr('cx',d => self.xScale(d.day))
                                    .attr('cy', d => self.yScale(d.positive))
-                                   .attr('r', 2.5);
+                                   .attr('r',d => window.innerWidth<670?1.5:2.0);
                    })
 
 
@@ -108,8 +108,6 @@ let StateChart;
                     const index = delaunay.find(mx, my);
                   this.renderOverlay(dataFlat[index], mx,my);
 
-                  console.log([dataFlat[index]]);
-
                const xoffset = my >200?35:-220
               const popUp = this.mainG.selectAll('.popup-circle').data([dataFlat[index]])
                                                                  .join('g')
@@ -122,7 +120,7 @@ let StateChart;
                                                                  popUp.append('text')
                                                                       .attr('y', '20')
                                                                      .text(d =>`Confirmed Positive ${d3.format(",")(d.positive)}`)
-            
+
             })
 
             this.svg.on('mouseleave', el=>{
@@ -200,7 +198,7 @@ let StateChart;
         const line = d3.line()
                        .x(d=>this.xScale(d.day))
                        .y(d=>this.yScale(d.value));
-
+       console.log('double this',this.doubleData);
        this.mainG.selectAll('.double-lines').data(this.doubleData)
                                              .join('path')
                                              .attr('class', 'double-lines')
@@ -211,8 +209,9 @@ let StateChart;
                                              .attr('d', line);
 
         this.mainG.selectAll('.double-line-text')
-                                .data(this.data)
+                                .data(this.doubleData)
                                 .join('text')
+                                .attr('class', 'double-text')
                                 .attr('x',(d,i)=> i === 0?this.xScale(doubleDay(this.maxY, i+1) -7):this.xScale(doubleDay(this.maxY, i+1) -9))
                                 .attr('y', this.yScale(this.maxY)+ 18)
                                 .attr('fill', 'rgba(100,100,100, 0.25)')
