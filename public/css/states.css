@@ -94,7 +94,7 @@ body{
   }
   .title-and-line-chart{
     width:calc(100vw);
-    height:calc(100vh);
+    height:calc(130vh);
     display:block;
     padding:0;
 
@@ -122,5 +122,8 @@ body{
 
     height:50px;
 
+  }
+  .title-and-line-chart{
+    height:calc(150vh);
   }
 }
