@@ -94,7 +94,8 @@ body{
   }
   .title-and-line-chart{
     width:calc(100vw);
-    height:calc(130vh);
+
+    height: 900px;
     display:block;
     padding:0;
 
@@ -115,9 +116,21 @@ body{
     padding-right:5px;
 
 }
+.states-picker{
+  margin-left:20px;
+  margin-right:10px;
+  width:calc(100vw - 30px)
+}
+svg text{
+  font-size: 10px;
+}
 }
 
 @media only screen and (orientation: landscape) and (max-width: 670px) {
+  .title-and-line-chart{
+    height:800px;
+  }
+
   .states-picker{
 
     height:50px;

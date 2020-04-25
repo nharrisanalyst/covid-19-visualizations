@@ -108,7 +108,7 @@ let StateChart;
                     const index = delaunay.find(mx, my);
                   this.renderOverlay(dataFlat[index], mx,my);
 
-               const xoffset = my >200?35:-220
+               const xoffset =window.innerWidth < 670? -125: my >200?35:-220
               const popUp = this.mainG.selectAll('.popup-circle').data([dataFlat[index]])
                                                                  .join('g')
                                                                  .attr('class', 'popup-circle')
@@ -116,7 +116,9 @@ let StateChart;
                                                                  .attr('transform', d=>`translate(${(this.xScale(d.day)+xoffset)}, ${this.yScale(d.positive)-20})`)
 
                                                                  popUp.append('text')
-                                                                      .text(d => `State: ${d.state}`)
+                                                                       .attr('y', d => window.innerWidth < 670?'10':'0')
+                                                                       .text(d => `State: ${d.state}`);
+
                                                                  popUp.append('text')
                                                                       .attr('y', '20')
                                                                      .text(d =>`Confirmed Positive ${d3.format(",")(d.positive)}`)
@@ -160,7 +162,7 @@ let StateChart;
          const popUpData = stateData[stateData.length-1];
 
          d3.selectAll('.tool-tip-text').remove();
-         const xOffSet = popUpData.state ==='WA'?150:popUpData.state ==='MI'?80:30;
+         const xOffSet =  popUpData.state ==='WA'?150:popUpData.state ==='MI'?80:30;
          const yOffSet = popUpData.state ==='MP'?-40:25;
          const popUp = this.mainG.append('g')
                            .attr('class', 'tool-tip-text')
