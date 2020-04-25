@@ -1,0 +1,12 @@
+.daily-new-chart-main{
+  width:calc(100vw - 40px);
+  height:calc(100vh - 20px);
+  display:flex;
+  padding-left:10px;
+  padding-right:10px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(150,150,150);
+  margin-top:25px;
+}

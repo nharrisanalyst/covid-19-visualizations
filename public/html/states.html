@@ -13,6 +13,7 @@
  <meta name="twitter:description" content="State Covid Visualization Info">
  <meta name="twitter:image" content="http://www.covidinfovis.com/images/covid-19-vis.png">
  <link rel="stylesheet" href="css/states.css" type="text/css">
+ <link rel="stylesheet" href="css/dailynew.css" type="text/css">
  <link href="https://fonts.google.com/specimen/Oswald?selection.family=Oswald" >
  <script src="javascript/d3.js"></script>
  <script src="javascript/d3-array.js"></script>
@@ -31,13 +32,16 @@
 
      <div class= 'state-chart-cont'>
      <div class='states-chart-main'></div> <div class = 'states-picker'></div>
-   </div>
 
-   <div class='daily-new-chart-const'>
+   </div>
+ </div>
+
+   <div class='daily-new-chart-main'>
      <span class='daily-new-select-state'></span> <span class='daily-new-select-statistic'></span>
      <div class='daily-new-chart'>
   </div>
 
+<script src="javascript/d3-rolling.js"></script>
 <script src="javascript/select-option.js"></script>
 <script src="javascript/double_data.js"></script>
 <script src="javascript/states_store.js"></script>
