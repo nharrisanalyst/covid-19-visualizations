@@ -20,7 +20,9 @@ const onOffState=(state)=>({
 
 
     const initState =  {
-        states:null
+        states:null,
+        dailyNewSS:'USA',
+        dailyNewStat:'deathIncrease'
     }
 
     const stateReducer = (state = initState, action= null) =>{

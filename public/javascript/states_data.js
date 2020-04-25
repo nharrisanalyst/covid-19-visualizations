@@ -3,7 +3,12 @@ let stateChart;
 
 {
 
-  d3.json('https://covidtracking.com/api/v1/states/daily.json').then(data=>{
+  const state_promise = d3.json('https://covidtracking.com/api/v1/states/daily.json');
+  const usa_promise = d3.json('https://covidtracking.com/api/v1/us/daily.json');
+   Promise.all([state_promise,usa_promise]).then(datas=>{
+        console.log(datas);
+        const data = datas[0];
+        const usa_data = datas[1];
       dataGrouped = d3.group(data, d=>d.state);
 
       stateData =[];
@@ -40,6 +45,10 @@ let stateChart;
            statesData = statesData.sort((a,b)=>(a.state<b.state?-1:1));
        store.dispatch(setStates(statesData))
   })
+
+
+
+
 
   function filter(data ,func){
        const newData =[]
