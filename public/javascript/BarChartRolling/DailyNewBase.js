@@ -19,7 +19,7 @@ let DailyNewBase
     }
 
    makeScales(){
-      this.xScale= d3.scalePoint().domain(this.data.map(d=>d.date)).range([0,this.width]);
+      this.xScale= d3.scaleBand().domain(this.data.map(d=>d.date).reverse()).range([0,this.width]);
 
       const maxY = d3.max(this.data, d=>d[this.yAtt]);
       this.yScale = d3.scaleLinear().domain([0,maxY]).range([this.height,0]).nice();

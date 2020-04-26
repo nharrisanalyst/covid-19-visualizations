@@ -41,7 +41,7 @@ let stateChart;
         });
 
       stateChart.render();
-
+       console.log(usa_data);
       const new_daily = new DailyNewChart({
         data:usa_data,
         el:d3.select('.daily-new-chart').node(),
