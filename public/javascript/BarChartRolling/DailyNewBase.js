@@ -27,7 +27,7 @@ let DailyNewBase
       }
 
     makeAxis(){
-      const xAxis = d3.axisBottom(this.xScale);
+      const xAxis = d3.axisBottom(this.xScale).tickFormat((d,i) => i%7===0 || i === this.data.length-1 && i !=this.data.length-2 && i !=this.data.length-3 && i !=this.data.length-4?`${String(d).slice(4,6)}/ ${String(d).slice(6,8)}`:'');
       const yAxis = d3.axisRight(this.yScale);
 
       this.mainG.append('g').attr('class', 'linear-chart-x-axis').attr('transform', `translate(0, ${this.height})`)
