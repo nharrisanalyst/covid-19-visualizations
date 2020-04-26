@@ -41,6 +41,14 @@ let stateChart;
         });
 
       stateChart.render();
+
+      const new_daily = new DailyNewChart({
+        data:usa_data,
+        el:d3.select('.daily-new-chart').node(),
+        yAttribute:'deathIncrease',
+      })
+
+      new_daily.render();
        let statesData = logData.map(d=>({state:d[0].state, on:highlightedStates.includes(d[0].state)}))
            statesData = statesData.sort((a,b)=>(a.state<b.state?-1:1));
        store.dispatch(setStates(statesData))

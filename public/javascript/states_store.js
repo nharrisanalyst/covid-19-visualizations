@@ -15,6 +15,20 @@ const onOffState=(state)=>({
   }
 })
 
+const setDailyState =(state)=>({
+  type:'SET_DAILY_NEW_STATE',    //can also be all of the unitied states
+  payload:{
+     state
+  }
+})
+
+const setDailyStatistic =(stat)=>({
+  type:'SET_DAILY_NEW_STATISTIC',
+  payload:{
+    stat
+  }
+})
+
 
 {
 
@@ -34,6 +48,11 @@ const onOffState=(state)=>({
                   }
                   return st;
               })};
+
+            case 'SET_DAILY_NEW_STATE':
+              return {...state, dailyNewSS:action.payload.state};
+            case 'SET_DAILY_NEW_STATISTIC':
+              return {...state, dailyNewStat:action.payload.stat};
             case 'SET_STATES':
               return {...state, states:action.payload.data};
                return state;

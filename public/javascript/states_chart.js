@@ -46,7 +46,8 @@ let StateChart;
                             .call(yAxis).call(g => g.select('.domain').remove())
                             .call(g => g.selectAll(".tick line")
                                         .attr("stroke-opacity", 0.5)
-                                        .attr("stroke-dasharray", "2,2"))
+                                        .attr("stroke-dasharray", "2,2")
+                                        .attr('x2', this.width))
                                         .call(g => g.selectAll(".tick text")
                                                      .attr("x", 4)
                                                      .attr("dy", -4));

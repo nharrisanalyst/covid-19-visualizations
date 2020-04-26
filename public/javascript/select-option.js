@@ -29,7 +29,10 @@ let SelectOption;
      onChage(){
        const self = this;
        this.select.on('change', function(){
-          self.dispFunc();
+          const value = d3.select(this).node().value;
+          self.dispFunc(value);
+          self.selected = value;
+          self.select.property('value',value);
        })
      }
 
@@ -38,20 +41,20 @@ let SelectOption;
      this.makeselectOption();
      this.onChage();
    }
+   addToList(listAddition){
+      this.list = this.list.concat(listAddition);
+     this.select.remove();
+     console.log('this is a story');
+
+     this.makeselectOption()
+     this.onChage();
+   }
  }
 
 
 
 
 SelectOption = SelectOptionClass;
-const test = new SelectOption({
-     el:d3.select('.daily-new-select-state').node(),
-     list:[1,2,3],
-     selected:3,
-     dispFunc:()=>{console.log('here we are')},
-     selectClass:'test-select-class',
-})
 
-test.render();
 
 }

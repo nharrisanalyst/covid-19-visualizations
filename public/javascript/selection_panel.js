@@ -9,12 +9,16 @@
                 .attr('class', d=> d.on?'state-select state-select-on':'state-select')
                 .html(d=>`${d.state}`)
 
+  //day list selectors
+  newStateSelector.addToList(store.getState().states.map(d=>d.state));
+
+  console.log('======>',store.getState())
+
   d3.selectAll('.state-select').on('click', d=>{
     const state = d.state;
     console.log(state)
     store.dispatch(onOffState(state));
   })
-  console.log(store.getState());
   highlightStates(store.getState().states);
  })
 
