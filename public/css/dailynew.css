@@ -74,3 +74,34 @@
   background-color: rgba(255,149,0,0.60);
   margin-right:5px;
 }
+
+@media only screen and (max-width: 813px) {
+
+  .daily-new-chart-main{
+    width:calc(100vw - 6px);
+    margin-right:2px;
+    margin-left:2px;
+    padding:0;
+
+  }
+  .daily-new-selectors{
+    font-size: 14px;
+  }
+  .daily-new-select-state-selector{
+    font-size:12px;
+  }
+  .daily-new-select-statistic-selector{
+    font-size:12px;
+  }
+
+  .non-breaking{
+    display: none;
+  }
+
+  .daily-new-chart{
+    margin-bottom:25px;
+  }
+  .daily-new-legend{
+  top:10px;
+  }
+}

@@ -83,7 +83,11 @@ body{
   font-weight:400;
 }
 
-@media only screen and (max-width: 670px) {
+.break-break{
+  display:none;
+}
+
+@media only screen and (max-width: 813px) {
   body {
 
     margin:0;
@@ -93,8 +97,10 @@ body{
     display:none;
   }
   .title-and-line-chart{
-    width:calc(100vw);
-
+    width:calc(100vw - 6px);
+    margin-right:2px;
+    margin-left:2px;
+    margin-top:5px;
     height: 900px;
     display:block;
     padding:0;
@@ -116,6 +122,10 @@ body{
     padding-right:5px;
 
 }
+
+.break-break{
+  display:block;
+}
 .states-picker{
   margin-left:20px;
   margin-right:10px;
@@ -126,7 +136,7 @@ svg text{
 }
 }
 
-@media only screen and (orientation: landscape) and (max-width: 670px) {
+@media only screen and (orientation: landscape) and (max-width: 813px) {
   .title-and-line-chart{
     height:800px;
   }
@@ -136,7 +146,10 @@ svg text{
     height:50px;
 
   }
+  .state-chart-cont{
+    height:60%;
+  }
   .title-and-line-chart{
-    height:calc(150vh);
+    height:calc(160vh);
   }
 }

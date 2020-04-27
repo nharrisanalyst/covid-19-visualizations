@@ -28,7 +28,15 @@ let DailyNewBase
 
     makeAxis(){
       const t =d3.transition(500);
-      const xAxis = d3.axisBottom(this.xScale).tickFormat((d,i) => i%7===0 || i === this.data.length-1 && i !=this.data.length-2 && i !=this.data.length-3 && i !=this.data.length-4?`${String(d).slice(4,6)}/${String(d).slice(6,8)}`:'');
+      const xAxis = d3.axisBottom(this.xScale).tickFormat((d,i) =>{
+                  if(window.innerWidth < 700){
+                    console.log('wow im here');
+                    console.log(i);
+                    console.log(i === 0|| i === Math.floor(this.data.length/2) || i === this.data.length -1)
+                    return i === 0|| i === Math.floor(this.data.length/2) || i === this.data.length -1?`${String(d).slice(5,6)}/${String(d).slice(6,8)}`:'';
+                  }
+               return i%7===0 || i === this.data.length-1 && i !=this.data.length-2 && i !=this.data.length-3 && i !=this.data.length-4?`${String(d).slice(5,6)}/${String(d).slice(6,8)}`:'';
+             });
       const yAxis = d3.axisRight(this.yScale);
 
       this.mainG.append('g').attr('class', 'linear-chart-x-axis').attr('transform', `translate(0, ${this.height})`).transition(t)
@@ -53,7 +61,15 @@ let DailyNewBase
 
     upateAxis(){
       const t =d3.transition(500);
-      const xAxis = d3.axisBottom(this.xScale).tickFormat((d,i) => i%7===0 || i === this.data.length-1 && i !=this.data.length-2 && i !=this.data.length-3 && i !=this.data.length-4?`${String(d).slice(4,6)}/${String(d).slice(6,8)}`:'');
+      const xAxis = d3.axisBottom(this.xScale).tickFormat((d,i) =>{
+                  if(window.innerWidth < 700){
+                    console.log('wow im here');
+                    console.log(i);
+                    console.log(i === 0|| i === Math.floor(this.data.length/2) || i === this.data.length -1)
+                    return i === 0|| i === Math.floor(this.data.length/2) || i === this.data.length -1?`${String(d).slice(5,6)}/${String(d).slice(6,8)}`:'';
+                  }
+               return i%7===0 || i === this.data.length-1 && i !=this.data.length-2 && i !=this.data.length-3 && i !=this.data.length-4?`${String(d).slice(5,6)}/${String(d).slice(6,8)}`:'';
+             });
       const yAxis = d3.axisRight(this.yScale);
 
       this.mainG.select('.linear-chart-x-axis').transition(t)
