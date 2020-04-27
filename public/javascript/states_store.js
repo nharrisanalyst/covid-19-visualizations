@@ -36,7 +36,7 @@ const setDailyStatistic =(stat)=>({
     const initState =  {
         states:null,
         dailyNewSS:'USA',
-        dailyNewStat:'deathIncrease'
+        dailyNewStat:'Deaths'
     }
 
     const stateReducer = (state = initState, action= null) =>{

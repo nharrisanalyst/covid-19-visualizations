@@ -1,14 +1,17 @@
 // StateChart import from "./state_chart";
 let stateChart;
-
+let usa_state_data;
+let new_daily_chart;
 {
 
   const state_promise = d3.json('https://covidtracking.com/api/v1/states/daily.json');
   const usa_promise = d3.json('https://covidtracking.com/api/v1/us/daily.json');
    Promise.all([state_promise,usa_promise]).then(datas=>{
-        console.log(datas);
         const data = datas[0];
         const usa_data = datas[1];
+
+       console.log(usa_data);
+
       dataGrouped = d3.group(data, d=>d.state);
 
       stateData =[];
@@ -31,8 +34,13 @@ let stateChart;
           })
 
           logData = logData.filter(d => d[0]!= undefined);
+          //adding state to usa
+          usa_state_data = logData.concat([usa_data.map(d=>{
+             d.state= 'USA';
+             return d;
+          }).reverse()]);
 
-       console.log(logData);
+    //initial charts
         stateChart =   new StateChart({
              el: d3.select('.states-chart-main').node(),
              data:logData,
@@ -41,7 +49,6 @@ let stateChart;
         });
 
       stateChart.render();
-       console.log(usa_data);
       const new_daily = new DailyNewChart({
         data:usa_data,
         el:d3.select('.daily-new-chart').node(),
@@ -49,6 +56,7 @@ let stateChart;
       })
 
       new_daily.render();
+      new_daily_chart = new_daily;
        let statesData = logData.map(d=>({state:d[0].state, on:highlightedStates.includes(d[0].state)}))
            statesData = statesData.sort((a,b)=>(a.state<b.state?-1:1));
        store.dispatch(setStates(statesData))

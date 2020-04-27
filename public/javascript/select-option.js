@@ -42,9 +42,8 @@ let SelectOption;
      this.onChage();
    }
    addToList(listAddition){
-      this.list = this.list.concat(listAddition);
-     this.select.remove();
-     console.log('this is a story');
+      this.list = this.list.length>10? this.list:this.list.concat(listAddition);
+      this.select.remove();
 
      this.makeselectOption()
      this.onChage();

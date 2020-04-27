@@ -14,7 +14,7 @@
  <meta name="twitter:image" content="http://www.covidinfovis.com/images/covid-19-vis.png">
  <link rel="stylesheet" href="css/states.css" type="text/css">
  <link rel="stylesheet" href="css/dailynew.css" type="text/css">
- <link href="https://fonts.google.com/specimen/Oswald?selection.family=Oswald" >
+ <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,300&family=Oswald&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
  <script src="javascript/d3.js"></script>
  <script src="javascript/d3-array.js"></script>
  <script src="https://unpkg.com/redux@3.6.0/dist/redux.min.js"></script>
@@ -38,8 +38,9 @@
 
    <div class='daily-new-chart-main'>
      <div class = 'daily-new-selectors-legend'>
-     <div class='daily-new-title'>Daily New Deaths</div>
-     <span class='daily-new-select-state'></span> <span class='daily-new-select-statistic'></span><span class='daily-new-legend'></span>
+     <div class='daily-new-title'>New Daily Increase Statistics</div>
+      <div class= 'daily-new-selectors'>Select Geography: <span class='daily-new-select-state'></span> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Select Statistics: <span class='daily-new-select-statistic'></span><span class='daily-new-legend'></span>
+      </div>
      </div>
      <div class='daily-new-chart'></div>
   </div>
