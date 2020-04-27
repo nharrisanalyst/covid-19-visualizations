@@ -13,7 +13,8 @@
  <meta name="twitter:description" content="State Covid Visualization Info">
  <meta name="twitter:image" content="http://www.covidinfovis.com/images/covid-19-vis.png">
  <link rel="stylesheet" href="css/states.css" type="text/css">
- <link href="https://fonts.google.com/specimen/Oswald?selection.family=Oswald" >
+ <link rel="stylesheet" href="css/dailynew.css" type="text/css">
+ <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,300&family=Oswald&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
  <script src="javascript/d3.js"></script>
  <script src="javascript/d3-array.js"></script>
  <script src="https://unpkg.com/redux@3.6.0/dist/redux.min.js"></script>
@@ -31,11 +32,27 @@
 
      <div class= 'state-chart-cont'>
      <div class='states-chart-main'></div> <div class = 'states-picker'></div>
+
    </div>
  </div>
- <script src="javascript/double_data.js"></script>
+
+   <div class='daily-new-chart-main'>
+     <div class = 'daily-new-selectors-legend'>
+     <div class='daily-new-title'>New Daily Increase Statistics</div>
+      <div class= 'daily-new-selectors'>Select Geography: <span class='daily-new-select-state'></span> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Select Statistics: <span class='daily-new-select-statistic'></span><span class='daily-new-legend'></span>
+      </div>
+     </div>
+     <div class='daily-new-chart'></div>
+  </div>
+
+<script src="javascript/d3-rolling.js"></script>
+<script src="javascript/select-option.js"></script>
+<script src="javascript/double_data.js"></script>
 <script src="javascript/states_store.js"></script>
+<script src='javascript/BarChartRolling/new-daily-selectors.js'></script>
 <script src="javascript/states_chart.js"></script>
+<script src='javascript/BarChartRolling/DailyNewBase.js'></script>
+<script src='javascript/BarChartRolling/DailyNewChart.js'></script>
 <script src="javascript/states_data.js"></script>
 <script src="javascript/selection_panel.js"></script>
  </body>

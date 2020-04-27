@@ -1,0 +1,55 @@
+.daily-new-chart-main{
+  width:calc(100vw - 40px);
+  height:calc(100vh - 20px);
+  display:flex;
+  padding-left:10px;
+  padding-right:10px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(150,150,150);
+  margin-top:25px;
+}
+
+
+
+.daily-new-selectors-legend{
+  margin-top:10px;
+  flex:2;
+  text-align:center;
+}
+
+.daily-new-chart{
+
+  flex:10;
+  margin-bottom:10px;
+}
+
+
+.new-daily-tooltip{
+  border: 1px solid grey;
+  background-color: rgba(255,255,255,0.95);
+  color:rgb(50,50,50);
+  border-radius: 15px;
+  padding:10px;
+  pointer-events: none;
+  width:200px;
+}
+
+.seven-day-ave-line{
+  pointer-events: none;
+}
+
+.daily-new-title{
+  font-size: 34px;
+}
+
+.daily-new-selectors{
+  font-size: 18px;
+}
+.daily-new-select-state-selector{
+  font-size:14px;
+}
+.daily-new-select-statistic-selector{
+  font-size:14px;
+}

@@ -2,7 +2,7 @@ let StateChart;
 {
   class BaseXYChart{
     constructor(options){
-      this.margin = {l:40,t:20,r:20,b:20};
+      this.margin = {l:10,t:20,r:20,b:20};
       this.el = options.el;
       this.data = options.data;
       this.highlightedStates = options.highlightedStates;
@@ -25,7 +25,7 @@ let StateChart;
 
       this.dayMax = dayMax;
       this.xScale= d3.scaleLinear().domain([0,dayMax]).range([0,this.width]);
-      const maxY = 300000
+      const maxY = 400000
              this.maxY = maxY;
       this.yScale = d3.scaleLog().domain([10,maxY]).range([this.height,0]);
 
@@ -33,7 +33,7 @@ let StateChart;
 
     makeAxis(){
       const xAxis = d3.axisBottom(this.xScale).tickValues(makeYTicks(this.dayMax, 5));
-      const yAxis = d3.axisRight(this.yScale).tickFormat(d3.format('.2s')).tickSize(this.width - this.margin.l-this.margin.r).tickValues([100, 500, 1000, 5000, 10000,20000,50000,100000,200000,300000]);
+      const yAxis = d3.axisRight(this.yScale).tickFormat(d3.format('.2s')).tickSize(this.width - this.margin.l-this.margin.r).tickValues([100, 500, 1000, 5000, 10000,20000,50000,100000,200000,300000,400000]);
 
       this.mainG.append('g').attr('class', 'log-chart-x-axis').attr('transform', `translate(0, ${this.height})`)
                                                               .call(xAxis).call(g => g.selectAll(".domain")
@@ -46,7 +46,8 @@ let StateChart;
                             .call(yAxis).call(g => g.select('.domain').remove())
                             .call(g => g.selectAll(".tick line")
                                         .attr("stroke-opacity", 0.5)
-                                        .attr("stroke-dasharray", "2,2"))
+                                        .attr("stroke-dasharray", "2,2")
+                                        .attr('x2', this.width))
                                         .call(g => g.selectAll(".tick text")
                                                      .attr("x", 4)
                                                      .attr("dy", -4));
@@ -99,8 +100,6 @@ let StateChart;
 
              const delaunay= d3.Delaunay.from(points);
              const voronoi = delaunay.voronoi([0,0, this.width,this.height]);
-
-             console.log(delaunay.find(1,1))
                    this.svg.on('mousemove', el=>{
                     d3.selectAll('.popup-circle').remove();
                    d3.selectAll('.circle-overlay').remove();
@@ -200,7 +199,6 @@ let StateChart;
         const line = d3.line()
                        .x(d=>this.xScale(d.day))
                        .y(d=>this.yScale(d.value));
-       console.log('double this',this.doubleData);
        this.mainG.selectAll('.double-lines').data(this.doubleData)
                                              .join('path')
                                              .attr('class', 'double-lines')
