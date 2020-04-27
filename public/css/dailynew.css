@@ -53,3 +53,24 @@
 .daily-new-select-statistic-selector{
   font-size:14px;
 }
+
+.daily-new-legend{
+  font-size: 12px;
+  font-family: Sans;
+  float:right;
+  margin-right:10px;
+  position:relative;
+  top:50px;
+  color:rgba(0,0,0,0.60);
+}
+
+
+.new-daily-legend-line{
+  display:inline-block;
+  width:30px;
+  height:3px;
+  position: relative;
+  bottom:3px;
+  background-color: rgba(255,149,0,0.60);
+  margin-right:5px;
+}
