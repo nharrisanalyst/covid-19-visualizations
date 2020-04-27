@@ -2,6 +2,13 @@
 let DailyNewChart;
 
 {
+
+  const mapStatToData ={
+    'deathIncrease':'Deaths',
+    'positiveIncrease':'Confirmed Positive',
+    'totalTestResultsIncrease':'Test',
+    'hospitalizedIncrease':'Hospitalized',
+  }
   class DailyNewChartClass extends DailyNewBase{
 
 
@@ -64,7 +71,7 @@ let DailyNewChart;
                            .style('position', 'absolute')
                            .style('top', `${y}px`)
                            .style('left', `${x +10 }px`)
-                           .html(self.renderPopHTML('Daily Deaths', d[self.yAtt],d.date))
+                           .html(self.renderPopHTML(mapStatToData[self.yAtt], d[self.yAtt],d.date))
        })
 
        this.mainG.selectAll('.daily-bars').on('mouseleave',function(){
@@ -74,7 +81,7 @@ let DailyNewChart;
     }
 
     renderPopHTML(title,value, day){
-      return `<div class='daily-chart-title'>${title}</div>
+      return `<div style='font-weight:bold;' class='daily-chart-title'>${title}</div>
                <div class='daily-chart-amount'>New Daily Amount: ${value}</div>
                <div class='daily-chart-amount'>Date: ${day}</div>`
     }
