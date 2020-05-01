@@ -3,7 +3,7 @@
  <head>
    <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1">
-   <title>Covid Visualization</title>
+   <title>Covid-Info-Vis</title>
  <meta name="author" content="Nathan Harris">
  <meta name="description" content="COID-INFO-VIS provides Daily Data and Visualizations to gain further insight into the USA Covid-19 outbreak.">
  <meta name="keywords" content="keywords,here">
@@ -19,7 +19,7 @@
  <meta property="og:title"              content="COVIDINFOVIS.com" />
  <meta property="og:description"        content="COID-INFO-VIS provides Daily Data and Visualizations to gain further insight into the USA Covid-19 outbreak." />
  <meta property="og:image"              content="http://www.covidinfovis.com/images/daily_stats.png" />
-
+ <link rel="shortcut icon" href="/public/to/favicon.ico">
  <link rel="stylesheet" href="css/states.css" type="text/css">
  <link rel="stylesheet" href="css/dailynew.css" type="text/css">
  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,300&family=Oswald&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
@@ -30,11 +30,12 @@
  </head>
 
  <body>
+
     <div class='title-and-line-chart'>
       <div class='chart-title-cont'>
         <div class='chart-title'>Confirmed State Covid Cases</div>
         <div class='chart-sub-title'>DAYS after the first TEN cases</div>
-        <div class='chart-sub-author'>built by <a href='https://www.twitter.com/nathaniharris'>Nathan Harris</a></div>
+
 
       </div>
 
@@ -53,7 +54,14 @@
      </div>
      <div class='daily-new-chart'></div>
   </div>
-
+  <div class ='states-footer'>
+    <span class='vis-menu'>
+    <a href='/' class='covidinfovis menu-item'>Covid-Info-Vis</a>
+    <a href='/' class='vis menu-item'>Visualizations</a>
+    <a href='/about' class='about menu-item'>About</a>
+     <a href='/contact' class='contact menu-item'>Contact</a>
+  </span>
+  </div>
 <script src="javascript/d3-rolling.js"></script>
 <script src="javascript/select-option.js"></script>
 <script src="javascript/double_data.js"></script>
