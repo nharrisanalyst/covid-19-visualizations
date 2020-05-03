@@ -8,6 +8,7 @@ let DailyNewChart;
     'positiveIncrease':'Confirmed Positive',
     'totalTestResultsIncrease':'Test',
     'hospitalizedIncrease':'Hospitalized',
+    'percentPositiveIncrease':'Percent Of Test Confirmed Positive',
   }
   class DailyNewChartClass extends DailyNewBase{
 
@@ -59,19 +60,27 @@ let DailyNewChart;
     }
 
     barsOverlay(){
+      const dayWeekTitle=['Sun', 'Mon', 'Tues','Wed','Thur','Fri', 'Sat'];
       const self = this;
        this.mainG.selectAll('.daily-bars').on('mouseenter',function(d){
          d3.select(this).attr('stroke', 'black').attr('stroke-width', 2);
          const [mx,my] =d3.mouse(d3.select('body').node());
          const x = mx> window.innerWidth -250?window.innerWidth -250:mx;// + self.margin.l;
          const y = my -100 //+ self.margin.t;
+         const formatValue = self.yAtt === 'percentPositiveIncrease'? d3.format(".0%"):d3.format(",.0f");
+         const dateString = String(d.date);
+         const year = dateString.slice(0,4);
+         const month = dateString.slice(4,6);
+         const day = dateString.slice(6,8);
+         const datObject = new Date(`${year}/${month}/${day}`);
+         const dayOffWeek = dayWeekTitle[datObject.getDay()];
 
          d3.select(self.el).append('div')
                            .attr('class', 'new-daily-tooltip')
                            .style('position', 'absolute')
                            .style('top', `${y}px`)
                            .style('left', `${x +10 }px`)
-                           .html(self.renderPopHTML(mapStatToData[self.yAtt], d[self.yAtt],d.date))
+                           .html(self.renderPopHTML(mapStatToData[self.yAtt], d[self.yAtt],String(d.date),formatValue, dayOffWeek))
        })
 
        this.mainG.selectAll('.daily-bars').on('mouseleave',function(){
@@ -80,10 +89,10 @@ let DailyNewChart;
        })
     }
 
-    renderPopHTML(title,value, day){
+    renderPopHTML(title,value, day,  formatValue, dayOffWeek){
       return `<div style='font-weight:bold;' class='daily-chart-title'>${title}</div>
-               <div class='daily-chart-amount'>New Daily Amount: ${value}</div>
-               <div class='daily-chart-amount'>Date: ${day}</div>`
+               <div class='daily-chart-amount'>New Daily Amount: ${formatValue(value)}</div>
+               <div class='daily-chart-amount'>Date: ${dayOffWeek} ${day.slice(0,4)}-${day.slice(4,6)}-${day.slice(6,8)}</div>`
     }
 
    render(){

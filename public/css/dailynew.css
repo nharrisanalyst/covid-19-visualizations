@@ -53,6 +53,7 @@
 }
 .daily-new-select-statistic-selector{
   font-size:14px;
+  max-width:200px;
 }
 
 .daily-new-legend{

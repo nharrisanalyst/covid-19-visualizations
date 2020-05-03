@@ -4,7 +4,7 @@ let newStateSelector;
 {
   const statisticSelector = new SelectOption({
     el: d3.select('.daily-new-select-statistic').node(),
-    list:['Deaths','Confirmed Positive','Test','Hospitalized'],
+    list:['Deaths','Confirmed Positive','Test','Percent Of Test Confirmed Positive'],
     selected:'Deaths',
     dispFunc:(stat)=>{store.dispatch(setDailyStatistic(stat))},
     selectClass:'daily-new-select-statistic-selector'
