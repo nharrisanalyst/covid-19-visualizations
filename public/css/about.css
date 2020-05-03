@@ -1,0 +1,9 @@
+.about-holder{
+  padding-left: 25px;
+  padding-top: 25px;
+}
+.states-footer{
+  position:absolute;
+  bottom:0px;
+  width:100vw;
+}

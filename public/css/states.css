@@ -1,6 +1,7 @@
 body{
   background-color: rgb(245,245,245);
   font-family: 'Oswald', sans-serif;
+  margin:0px;
 }
 
 .title-and-line-chart{
@@ -11,8 +12,11 @@ body{
   padding-right:10px;
   flex-direction: column;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 0px;
   border: 1px solid rgb(150,150,150);
+  margin-left: 10px;
+  margin-top:15px;
+
 }
 
 .chart-title-cont{
@@ -104,12 +108,12 @@ body{
     height: 900px;
     display:block;
     padding:0;
-
   }
   .state-chart-cont{
     display:block;
     height:65%;
   }
+
 
   .state-select {
 
@@ -152,4 +156,48 @@ svg text{
   .title-and-line-chart{
     height:calc(160vh);
   }
+}
+
+.covid-info-vis-header{
+  height:125px;
+  width:calc(100vw - 40px);
+
+
+  padding-left:10px;
+  padding-right:10px;
+  line-height: 14px;
+  background-color: white;
+  border-radius: 0px;
+  border: 1px solid rgb(150,150,150);
+  margin-left: 10px;
+  font-size:14px;
+  font-family: helvetica, sans-serif;
+
+
+
+
+  margin-bottom: 5px;
+}
+
+.states-footer{
+  height:50px;
+  background-color:rgba(150, 169, 255, 1);
+  border-top: 3px solid rgb(75,75,75);
+  margin-top: 100px;
+}
+
+.menu-item{
+  color:rgb(235,235,235);
+  text-decoration: none;
+  touch-action: manipulation;
+  padding-left:10px;
+  padding-right:10px;
+}
+.menu-item:hover{
+  text-decoration: underline;
+  color:white;
+}
+
+.covidinfovis{
+  width:250px;
 }

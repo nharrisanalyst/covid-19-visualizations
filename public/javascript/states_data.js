@@ -39,7 +39,14 @@ let new_daily_chart;
              d.state= 'USA';
              return d;
           }).reverse()]);
-
+          //calculate percentPositiveIncrease
+          usa_state_data = usa_state_data.map(state=>{
+             return state.map(d=>{
+               const increasePositive = d.positiveIncrease/d.totalTestResultsIncrease;
+               d.percentPositiveIncrease = increasePositive === 1 || isNaN(increasePositive)?0:increasePositive;
+               return d;
+             })
+          })
     //initial charts
         stateChart =   new StateChart({
              el: d3.select('.states-chart-main').node(),

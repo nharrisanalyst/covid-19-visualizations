@@ -4,12 +4,13 @@
   let lastDailyState ='USA';
   let lastDailyStat ='deathIncrease';
   let states;
-  ['Deaths','Confirmed Positive','Test','Hospitalized']
+  //['Deaths','Confirmed Positive','Test','Hospitalized']
   const mapStatToData ={
     'Deaths':'deathIncrease',
     'Confirmed Positive':'positiveIncrease',
     'Test':'totalTestResultsIncrease',
     'Hospitalized':'hospitalizedIncrease',
+    'Percent Of Test Confirmed Positive': 'percentPositiveIncrease',
   }
  store.subscribe(()=>{
 
