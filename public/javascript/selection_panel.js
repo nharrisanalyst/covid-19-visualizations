@@ -4,6 +4,9 @@
   let lastDailyState ='USA';
   let lastDailyStat ='deathIncrease';
   let states;
+  let rollingStates;
+  let rollingSelector;
+
   //['Deaths','Confirmed Positive','Test','Hospitalized']
   const mapStatToData ={
     'Deaths':'deathIncrease',
@@ -23,6 +26,24 @@
 
       new_daily_chart.rerender({data:newData,yAttribute:mapStatToData[stat]});
    }
+
+   //states selection SelectionPanel
+
+   if(rollingStates != store.getState().rollingStates){
+       if(rollingSelector === null){
+         rollingSelector = SelectionPanel({
+           states:store.getState().rollingStates,
+           el: d3.select('.states-picker-rolling').node(),
+           dispFunc:(state) =>{store.dispatch(onOffRollingState(state))},
+           class:'rolling-avg-state-sel',
+           selectedStates:['NY','CA','IA']
+         })
+         rollingSelector.render();
+       }else{
+         rollingSelector.reRender({states:store.getState().rollingStates});
+       }
+   }
+
 
     lastDailyState = store.getState().dailyNewSS;
     lastDailyStat = store.getState().dailyNewStat;

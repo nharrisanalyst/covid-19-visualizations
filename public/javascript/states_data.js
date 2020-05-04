@@ -22,6 +22,7 @@ let new_daily_chart;
         stateData.push(oneState);
       }
       const highlightedStates =['NY', 'CA', 'NJ', 'FL', 'LA', 'MI','MA',];
+      const highlightedRollingStates=['NY', 'NJ','ID'];
       let logData = filter(stateData, d=>(d.positive >=10));
           logData = day(logData)
 
@@ -66,7 +67,9 @@ let new_daily_chart;
       new_daily_chart = new_daily;
        let statesData = logData.map(d=>({state:d[0].state, on:highlightedStates.includes(d[0].state)}))
            statesData = statesData.sort((a,b)=>(a.state<b.state?-1:1));
-       store.dispatch(setStates(statesData))
+       let rollingStatesData = statesData.map(d=>({state:d.state, on:highlightedRollingStates.includes(d.state)}));
+       store.dispatch(setStates(statesData));
+       store.dispatch(setRollingStates(rollingStatesData));
   })
 
 

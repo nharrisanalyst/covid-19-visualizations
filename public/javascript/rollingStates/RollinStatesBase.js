@@ -1,13 +1,20 @@
-let DailyNewBase
+let RollingStatesBase;
 {
-  class DailyNewBaseClass{
+  class RollingStatesBaseClass{
     constructor(options){
       this.margin = {l:10,t:20,r:20,b:20};
+      this.selectedStates = options.selectedStates;
       this.el = options.el;
-      this.data = options.data;
+      this.rawData = options.data;
+      this.data = this.filterData(this.rawData);
+      this.flatData = this.data.flat();
       this.height = this.el.getBoundingClientRect().height - (this.margin.t+this.margin.b);
       this.width = this.el.getBoundingClientRect().width - (this.margin.l+this.margin.r);
       this.yAtt = options.yAttribute;
+    }
+
+    filterData(rawData){
+      rawData.filter(d => d[0] != undefined && this.selectedStates.includes((d[0].state));
     }
 
     makeSVG(){
@@ -19,9 +26,9 @@ let DailyNewBase
     }
 
    makeScales(){
-      this.xScale= d3.scaleBand().domain(this.data.map(d=>d.date).reverse()).range([0,this.width]).paddingInner(0.1);
+      this.xScale= d3.scaleBand().domain(this.data[0].map(d=>d.date).reverse()).range([0,this.width]).paddingInner(0.1);
 
-      const maxY = d3.max(this.data, d=>d[this.yAtt]);
+      const maxY = d3.max(this.flatData, d=>d[this.yAtt]);
       this.yScale = d3.scaleLinear().domain([0,maxY]).range([this.height,0]).nice();
 
       }
@@ -92,6 +99,6 @@ let DailyNewBase
   }
 
 
- DailyNewBase = DailyNewBaseClass;
+ RollingStatesBase = RollingStatesBaseClass;
 
 }

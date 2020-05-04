@@ -29,6 +29,26 @@ const setDailyStatistic =(stat)=>({
   }
 })
 
+const setRollingStat = (stat) =>({
+   type:'SET_ROLLING_STAT',
+   payload:{
+     stat,
+   }
+})
+
+const setRollingStates = (states) =>({
+  type:'SET_ROLLING_STATES',
+  payload:{
+    states,
+  }
+})
+
+const onOffRollingState = (state) =>({
+  type:'ON_OFF_ROLLING_STATE',
+  payload:{
+    state,
+  }
+})
 
 {
 
@@ -36,7 +56,9 @@ const setDailyStatistic =(stat)=>({
     const initState =  {
         states:null,
         dailyNewSS:'USA',
-        dailyNewStat:'Deaths'
+        dailyNewStat:'Deaths',
+        rollingStates:null,
+        rollingStat:'Deaths',
     }
 
     const stateReducer = (state = initState, action= null) =>{
@@ -48,15 +70,26 @@ const setDailyStatistic =(stat)=>({
                   }
                   return st;
               })};
-
+            case 'ON_OFF_ROLLING_STATE':
+            return {...state, rollingStates:state.states.map(st=>{
+                if(action.payload.state === st.state){
+                  st.on = !st.on;
+                }
+                return st;
+            })};
             case 'SET_DAILY_NEW_STATE':
               return {...state, dailyNewSS:action.payload.state};
             case 'SET_DAILY_NEW_STATISTIC':
               return {...state, dailyNewStat:action.payload.stat};
             case 'SET_STATES':
               return {...state, states:action.payload.data};
-               return state;
-          }
+            case 'SET_ROLLING_STATES':
+              return {...state,rollingStates:action.payload.states};
+            default:
+              return state;
+
+
+            }
     };
 
     store = Redux.createStore(stateReducer);
