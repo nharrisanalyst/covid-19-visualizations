@@ -23,14 +23,14 @@ body{
   flex:2;
   text-align:center;
   font-size:34px;
-
+  margin-top:10px;
   font-weight:200;
 }
 
 .chart-title{
 
   width:100%;
-  margin-top:20px;
+
 }
 .chart-sub-title{
   font-size: 20px;
@@ -193,6 +193,9 @@ svg text{
   padding-left:10px;
   padding-right:10px;
 }
+.data-attribute{
+  padding-left:10px;
+}
 .menu-item:hover{
   text-decoration: underline;
   color:white;
@@ -200,4 +203,14 @@ svg text{
 
 .covidinfovis{
   width:250px;
+}
+
+.chart-sub-info{
+  font-size:13px;
+  font-weight: lighter;
+  margin:0px;
+  height:13px;
+  display:block;
+  color:rgba(0, 9, 55, 1);
+
 }
