@@ -4,8 +4,8 @@ let usa_state_data;
 let new_daily_chart;
 {
 
-  const state_promise = d3.json('https://covidtracking.com/api/v1/states/daily.json');
-  const usa_promise = d3.json('https://covidtracking.com/api/v1/us/daily.json');
+  const state_promise = d3.json('https://api.covidtracking.com/v1/states/daily.json');
+  const usa_promise = d3.json('https://api.covidtracking.com/v1/us/daily.json');
    Promise.all([state_promise,usa_promise]).then(datas=>{
         const data = datas[0];
         const usa_data = datas[1];

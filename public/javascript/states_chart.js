@@ -25,7 +25,7 @@ let StateChart;
 
       this.dayMax = dayMax;
       this.xScale= d3.scaleLinear().domain([0,dayMax]).range([0,this.width]);
-      const maxY = 400000
+      const maxY = 1000000
              this.maxY = maxY;
       this.yScale = d3.scaleLog().domain([10,maxY]).range([this.height,0]);
 
@@ -33,7 +33,7 @@ let StateChart;
 
     makeAxis(){
       const xAxis = d3.axisBottom(this.xScale).tickValues(makeYTicks(this.dayMax, 5));
-      const yAxis = d3.axisRight(this.yScale).tickFormat(d3.format('.2s')).tickSize(this.width - this.margin.l-this.margin.r).tickValues([100, 500, 1000, 5000, 10000,20000,50000,100000,200000,300000,400000]);
+      const yAxis = d3.axisRight(this.yScale).tickFormat(d3.format('.2s')).tickSize(this.width - this.margin.l-this.margin.r).tickValues([100, 500, 1000, 5000, 10000,20000,50000,100000,200000,300000,400000,600000, 800000, 1000000]);
 
       this.mainG.append('g').attr('class', 'log-chart-x-axis').attr('transform', `translate(0, ${this.height})`)
                                                               .call(xAxis).call(g => g.selectAll(".domain")
