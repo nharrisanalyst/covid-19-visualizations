@@ -1,6 +1,6 @@
 {
   "name": "express-babel-webpack-starter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "start": "webpack && node ./dist/index",
@@ -33,6 +33,6 @@
     "webpack-node-externals": "^1.4.3"
   },
   "devDependencies": {
-    
+
   }
 }
