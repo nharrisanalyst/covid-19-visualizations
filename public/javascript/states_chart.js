@@ -23,17 +23,24 @@ let StateChart;
       let dayMax = d3.max(this.data, d=>d.length);
            dayMax = dayMax + ((3000-dayMax) % 10);
 
+      console.log("=======> data", this.data);
+
       this.dayMax = dayMax;
       this.xScale= d3.scaleLinear().domain([0,dayMax]).range([0,this.width]);
-      const maxY = 1000000
-             this.maxY = maxY;
+      const maxY = d3.max(this.data, d=> d3.max(d, s=> s.positive));
+
+      this.maxY = maxY;
       this.yScale = d3.scaleLog().domain([10,maxY]).range([this.height,0]);
+      this.yScale.ticks(5);
+      this.yScale.nice();
+      console.log('====> element', this.maxY);
 
       }
 
     makeAxis(){
-      const xAxis = d3.axisBottom(this.xScale).tickValues(makeYTicks(this.dayMax, 5));
-      const yAxis = d3.axisRight(this.yScale).tickFormat(d3.format('.2s')).tickSize(this.width - this.margin.l-this.margin.r).tickValues([100, 500, 1000, 5000, 10000,20000,50000,100000,200000,300000,400000,600000, 800000, 1000000]);
+      const topAxis = Math.ceil(this.maxY/1000000) * 1000000;
+      const xAxis = d3.axisBottom(this.xScale).tickValues(makeYTicks(this.dayMax, 10));
+      const yAxis = d3.axisRight(this.yScale).tickFormat(d3.format('.2s')).tickSize(this.width - this.margin.l-this.margin.r).tickValues([100, 500, 1000, 5000, 10000,20000,50000,100000,200000,300000,400000,600000, 1000000,topAxis]);;
 
       this.mainG.append('g').attr('class', 'log-chart-x-axis').attr('transform', `translate(0, ${this.height})`)
                                                               .call(xAxis).call(g => g.selectAll(".domain")
@@ -215,7 +222,7 @@ let StateChart;
                                 .attr('x',(d,i)=> i === 0?this.xScale(doubleDay(this.maxY, i+1) -7):this.xScale(doubleDay(this.maxY, i+1) -9))
                                 .attr('y', this.yScale(this.maxY)+ 18)
                                 .attr('fill', 'rgba(100,100,100, 0.25)')
-                                .text((d,i)=> i===0? `Doubles Every Day`:`Doubles Every ${i+1} Days`)
+                                .text((d,i)=> i===0? `Doubles Every Day`:`${i+1} Days`)
 
       }
 
@@ -223,7 +230,7 @@ let StateChart;
         this.makeSVG();
         this.makeScales();
         this.makeAxis();
-        this.makeDoubleLines();
+        //this.makeDoubleLines();
         this.makeLines();
         this.makeOverlay();
         //this.makeDots();
